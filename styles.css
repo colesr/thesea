@@ -1,17 +1,12 @@
-:root {
-    --day-blue: #87CEEB;
-    --night-dark: #0b1026;
-}
-
 body, html {
     margin: 0; padding: 0; overflow: hidden;
     background: #000;
+    image-rendering: pixelated;
 }
 
 .world-container {
     width: 100vw; height: 100vh;
     position: relative; overflow: hidden;
-    image-rendering: pixelated;
 }
 
 /* Pixel Grid Overlay */
@@ -23,7 +18,7 @@ body, html {
     z-index: 100; pointer-events: none;
 }
 
-/* Environment Layers */
+/* Environment */
 .sky-layer {
     position: absolute; top: 0; width: 100%; height: 65%;
     transition: background 1s linear;
@@ -48,7 +43,17 @@ body, html {
 .sun { background: #ffd700; box-shadow: 0 0 40px #ffae00; }
 .moon { background: #fdfdfd; box-shadow: 0 0 20px #fff; }
 
-/* Waves & Foam */
+/* Stars */
+.star {
+    position: absolute; width: 2px; height: 2px; background: white;
+    animation: twinkle var(--duration) steps(2) infinite;
+}
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.5); box-shadow: 0 0 4px #fff; }
+}
+
+/* Waves & Tide */
 .waves {
     position: absolute; top: -15px; width: 200%; height: 40px;
     background-image: radial-gradient(circle at 50% 100%, rgba(255,255,255,0.4) 20%, transparent 25%);
@@ -56,7 +61,6 @@ body, html {
 }
 .back-waves { opacity: 0.3; animation: wave-crawl 6s steps(8) infinite; }
 .front-waves { top: -10px; animation: wave-crawl 4s steps(6) infinite reverse; }
-
 @keyframes wave-crawl {
     0% { transform: translateX(0) translateY(0); }
     50% { transform: translateX(-40px) translateY(10px); }
@@ -68,28 +72,23 @@ body, html {
     background: rgba(255, 255, 255, 0.6);
     animation: tide 8s steps(10) infinite;
 }
-
 @keyframes tide {
     0%, 100% { transform: translateY(0); opacity: 0.3; }
     50% { transform: translateY(15px); opacity: 0.7; }
 }
 
-/* Actors (Animals) */
-.dolphin, .crab, .eagle, .shark {
-    position: absolute; font-size: 30px; user-select: none;
-}
+/* Actors */
+.dolphin, .crab, .eagle { position: absolute; font-size: 30px; user-select: none; }
 
 .crab { animation: scuttle 3s steps(5) infinite alternate; }
 @keyframes scuttle { to { transform: translateX(50px); } }
 
-.dolphin { animation: jump-arc 1.5s ease-out forwards; }
 @keyframes jump-arc {
-    0% { transform: translate(0, 0) rotate(0deg); }
+    0% { transform: translate(0,0) rotate(0deg); }
     50% { transform: translate(50px, -60px) rotate(-20deg); }
     100% { transform: translate(100px, 0) rotate(20deg); opacity: 0; }
 }
 
-.eagle { z-index: 10; }
 @keyframes swoop-and-sip {
     0% { left: -50px; transform: rotate(10deg); }
     45% { top: 65%; transform: rotate(25deg); }
@@ -98,13 +97,13 @@ body, html {
 }
 .eagle.has-tea::after { content: '🧋'; position: absolute; font-size: 15px; bottom: -5px; right: -5px; }
 
-/* UI Styling */
+/* UI */
 #time-display {
     position: absolute; top: 20px; left: 20px; color: #fff;
     font-family: monospace; font-size: 24px; text-shadow: 2px 2px #000; z-index: 1000;
 }
 .instructions {
-    position: absolute; bottom: 10px; right: 20px; color: rgba(255,255,255,0.5);
+    position: absolute; bottom: 10px; right: 20px; color: rgba(255,255,255,0.7);
     font-family: monospace; font-size: 12px; z-index: 1000;
 }
 .palm-tree { position: absolute; bottom: 10px; font-size: 70px; transform-origin: bottom; animation: sway 4s ease-in-out infinite alternate; }
