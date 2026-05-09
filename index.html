@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pixel Beachfront</title>
+    <title>Pixel Eco-Survival</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -14,7 +14,6 @@
             <div id="sun" class="celestial sun"></div>
             <div id="moon" class="celestial moon"></div>
             <div id="stars"></div>
-            <div id="eagle-layer"></div>
         </div>
 
         <div class="ocean" id="ocean-zone">
@@ -24,12 +23,16 @@
         
         <div class="beach" id="beach-zone">
             <div class="foam"></div>
-            <div class="palm-tree">🌴</div>
-            <div class="palm-tree right">🌴</div>
+            <div class="palm-tree" style="left: 15%">🌴</div>
+            <div class="palm-tree" style="left: 45%">🌴</div>
+            <div class="palm-tree right" style="right: 15%">🌴</div>
         </div>
 
         <div id="time-display">00:00</div>
-        <div class="instructions">Sky: 🦅 | Ocean: 🐬 | Sand: 🦀</div>
+        <div id="eco-stats">
+            🦅: <span id="e-count">0</span> | 🐬: <span id="d-count">0</span> | 🦀: <span id="c-count">0</span> | 🐟: <span id="f-count">0</span>
+        </div>
+        <div class="instructions">Apex Predator: 🦈 | Fish: 🐟 | Tea: 🧋</div>
     </div>
     <script src="script.js"></script>
 </body>
