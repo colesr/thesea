@@ -6,13 +6,14 @@ const oceanZone = document.getElementById('ocean-zone');
 const beachZone = document.getElementById('beach-zone');
 const timeDisplay = document.getElementById('time-display');
 
-const CYCLE_TIME = 300; // 5 Minutes
+const CYCLE_TIME = 300; 
 let seconds = 0;
 
+// 1. World Clock & Quadratic Lighting
 function updateWorld() {
     seconds = (seconds + 1) % CYCLE_TIME;
-    const isDay = seconds <= 180; // 3 mins day
-    const progress = isDay ? seconds / 180 : (seconds - 180) / 120; // 2 mins night
+    const isDay = seconds <= 180;
+    const progress = isDay ? seconds / 180 : (seconds - 180) / 120;
     
     const height = Math.sin(progress * Math.PI) * 85;
 
@@ -20,7 +21,6 @@ function updateWorld() {
         sun.style.bottom = `${height}%`;
         moon.style.bottom = `-100px`;
         
-        // Quadratic Color Math: y = ax^2 + bx + c
         const r = Math.floor(-400 * Math.pow(progress - 0.5, 2) + 135);
         const g = Math.floor(-300 * Math.pow(progress - 0.5, 2) + 206);
         const b = Math.floor(200 * Math.pow(progress - 0.5, 2) + 235);
@@ -38,7 +38,7 @@ function updateWorld() {
     timeDisplay.innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
 }
 
-// Interaction Spawner
+// 2. Interaction Spawner
 world.addEventListener('mousedown', (e) => {
     const beachRect = beachZone.getBoundingClientRect();
     const oceanTop = window.innerHeight * 0.6;
@@ -68,6 +68,7 @@ function spawnDolphin(x, y) {
     dolphin.innerHTML = '🐬';
     dolphin.style.left = (x - 20) + 'px';
     dolphin.style.top = y + 'px';
+    dolphin.style.animation = "jump-arc 1.5s ease-out forwards";
     oceanZone.appendChild(dolphin);
     setTimeout(() => dolphin.remove(), 1500);
 }
@@ -85,14 +86,17 @@ function spawnEagle(startY) {
     setTimeout(() => eagle.remove(), duration * 1000);
 }
 
-setInterval(updateWorld, 1000);
-updateWorld();
-
-// Generate Stars
+// 3. Twinkling Star Generation
 const starsContainer = document.getElementById('stars');
-for (let i = 0; i < 60; i++) {
+for (let i = 0; i < 80; i++) {
     const star = document.createElement('div');
-    star.style.cssText = `position:absolute; width:2px; height:2px; background:white; 
-        left:${Math.random()*100}%; top:${Math.random()*100}%; opacity:${Math.random()}`;
+    star.className = 'star';
+    star.style.left = `${Math.random() * 100}%`;
+    star.style.top = `${Math.random() * 100}%`;
+    star.style.setProperty('--duration', `${2 + Math.random() * 3}s`);
+    star.style.animationDelay = `${Math.random() * 5}s`;
     starsContainer.appendChild(star);
 }
+
+setInterval(updateWorld, 1000);
+updateWorld();
