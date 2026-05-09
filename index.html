@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Beachfront</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="world-container" id="world">
+        <div class="pixel-overlay"></div>
+
+        <div id="sky" class="sky-layer">
+            <div id="sun" class="celestial sun"></div>
+            <div id="moon" class="celestial moon"></div>
+            <div id="stars"></div>
+            <div id="eagle-layer"></div>
+        </div>
+
+        <div class="ocean" id="ocean-zone">
+            <div id="sharks-layer"></div>
+            <div class="waves back-waves"></div>
+            <div class="waves front-waves"></div>
+        </div>
+        
+        <div class="beach" id="beach-zone">
+            <div class="foam"></div>
+            <div class="palm-tree">🌴</div>
+            <div class="palm-tree right">🌴</div>
+        </div>
+
+        <div id="time-display">00:00</div>
+        <div class="instructions">Click: Sky (Eagle) | Ocean (Dolphin) | Sand (Crab)</div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
