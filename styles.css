@@ -18,7 +18,7 @@ body, html {
     z-index: 100; pointer-events: none;
 }
 
-/* Environment */
+/* Environment Layers */
 .sky-layer {
     position: absolute; top: 0; width: 100%; height: 65%;
     transition: background 1s linear;
@@ -89,6 +89,7 @@ body, html {
     100% { transform: translate(100px, 0) rotate(20deg); opacity: 0; }
 }
 
+.eagle { z-index: 10; }
 @keyframes swoop-and-sip {
     0% { left: -50px; transform: rotate(10deg); }
     45% { top: 65%; transform: rotate(25deg); }
@@ -97,11 +98,26 @@ body, html {
 }
 .eagle.has-tea::after { content: '🧋'; position: absolute; font-size: 15px; bottom: -5px; right: -5px; }
 
-/* UI */
+/* UI Styling & Clock Shimmer */
 #time-display {
-    position: absolute; top: 20px; left: 20px; color: #fff;
-    font-family: monospace; font-size: 24px; text-shadow: 2px 2px #000; z-index: 1000;
+    position: absolute; top: 20px; left: 20px;
+    font-family: monospace; font-size: 24px; z-index: 1000;
+    
+    color: rgba(255, 255, 255, 0.7); 
+    background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.9) 50%, transparent 70%);
+    background-size: 200% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    
+    animation: clock-shimmer 3s infinite linear;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
+@keyframes clock-shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
 .instructions {
     position: absolute; bottom: 10px; right: 20px; color: rgba(255,255,255,0.7);
     font-family: monospace; font-size: 12px; z-index: 1000;
