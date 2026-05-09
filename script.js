@@ -6,10 +6,10 @@ const oceanZone = document.getElementById('ocean-zone');
 const beachZone = document.getElementById('beach-zone');
 const timeDisplay = document.getElementById('time-display');
 
-const CYCLE_TIME = 300; 
+const CYCLE_TIME = 300; // 5 Minutes
 let seconds = 0;
 
-// 1. World Clock & Quadratic Lighting
+// 1. World Clock & Lighting
 function updateWorld() {
     seconds = (seconds + 1) % CYCLE_TIME;
     const isDay = seconds <= 180;
@@ -21,6 +21,7 @@ function updateWorld() {
         sun.style.bottom = `${height}%`;
         moon.style.bottom = `-100px`;
         
+        // Quadratic Color Math
         const r = Math.floor(-400 * Math.pow(progress - 0.5, 2) + 135);
         const g = Math.floor(-300 * Math.pow(progress - 0.5, 2) + 206);
         const b = Math.floor(200 * Math.pow(progress - 0.5, 2) + 235);
@@ -59,7 +60,7 @@ function spawnCrab(x, y) {
     crab.style.left = x + 'px';
     crab.style.top = (y - 20) + 'px';
     beachZone.appendChild(crab);
-    setTimeout(() => crab.remove(), 20000);
+    setTimeout(() => crab.remove(), 20000); // Leaves after 20s
 }
 
 function spawnDolphin(x, y) {
@@ -81,6 +82,7 @@ function spawnEagle(startY) {
     const duration = 5;
     eagle.style.animation = `swoop-and-sip ${duration}s linear forwards`;
     
+    // Grab the tea midway
     setTimeout(() => eagle.classList.add('has-tea'), duration * 450);
     document.getElementById('eagle-layer').appendChild(eagle);
     setTimeout(() => eagle.remove(), duration * 1000);
@@ -98,5 +100,6 @@ for (let i = 0; i < 80; i++) {
     starsContainer.appendChild(star);
 }
 
+// 4. Start the World
 setInterval(updateWorld, 1000);
 updateWorld();
